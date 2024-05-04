@@ -2,7 +2,11 @@
 
 require 'vendor/autoload.php';
 
-use GradusInventor\Reader;
+$oXlsx        = new GradusInventor\Xlsx('data.xlsx', 0);
+$aAttendences = $oXlsx->parseStudentGroupAttendences();
+$aGrades      = $oXlsx->parseStudentGroupGrades(3, 7);
+$aStudents    = $oXlsx->parseStudents($aGrades, $aAttendences);
 
-$reader = new Reader();
-echo $reader->read();
+var_dump($aStudents);
+$sExampleStudentRegistration = '45454';
+var_dump($aStudents[$sExampleStudentRegistration]);
